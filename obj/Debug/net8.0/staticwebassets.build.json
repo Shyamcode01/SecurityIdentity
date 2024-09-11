@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "jbCKZsjc5RzLlIr7rgjjMHUgFoIrR/BKKlA3OtN2b3w=",
+  "Source": "WebApiIdentity_security",
+  "BasePath": "_content/WebApiIdentity_security",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
