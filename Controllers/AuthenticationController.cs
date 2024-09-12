@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿ 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using NETCore.MailKit.Core;
-using UserManageService.Model;
+ 
 using WebApiIdentity_security.Model;
 using WebApiIdentity_security.Model.Authentication_model;
-using UserManageService.Service;
+ 
+
+
 
 namespace WebApiIdentity_security.Controllers
 {
@@ -16,9 +17,9 @@ namespace WebApiIdentity_security.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configration;
-        private readonly UserManageService.Service.IEmailService _emailService;
+       private readonly UserManageService.Service.IEmailService _emailService;
         public AuthenticationController(RoleManager<IdentityRole> roleManager,
-            UserManager<IdentityUser> userManager, IConfiguration configration,UserManageService.Service.IEmailService emailService)
+            UserManager<IdentityUser> userManager, IConfiguration configration, UserManageService.Service.IEmailService emailService)
         {
             _roleManager = roleManager;
 
@@ -59,10 +60,14 @@ namespace WebApiIdentity_security.Controllers
                     var result = await _userManager.CreateAsync(user, registeruser.password);
                     if (!result.Succeeded)
                     {
-                       
+
+
                         return StatusCode(StatusCodes.Status500InternalServerError,
                            new Response { Status = "Error", Message = "User Failed Create data" });
                     }
+
+                        // email send data 
+                      var status=  await _emailService.SendEmail(registeruser.Email, "Account create Success fully !", "Congratulation your account is successfully create");
                     // Add role to user manager
                     await _userManager.AddToRoleAsync(user,role);
                     return StatusCode(StatusCodes.Status201Created,
@@ -82,15 +87,6 @@ namespace WebApiIdentity_security.Controllers
             }
         }
 
-
-        [HttpGet]
-        public IActionResult TestEmail()
-        {
-            var _message = new Message(new string[] { "shyamyadav121240@gmail.com" }, "Test mail", "Hello first email sending here");
-            _emailService.SendEmail(_message);
-            return StatusCode(StatusCodes.Status200OK,
-
-                new Response { Status = "SUCCESS", Message = "Data send you mail success fully" });
-        }
+ 
     }
 }

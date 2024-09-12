@@ -7,7 +7,9 @@ using NETCore.MailKit.Core;
 using System.Text;
 using UserManageService.Model;
 using WebApiIdentity_security.Model.DB;
- 
+using UserManageService.Service;
+
+
 
 namespace WebApiIdentity_security
 {
@@ -26,12 +28,14 @@ namespace WebApiIdentity_security
                 .AddEntityFrameworkStores<ApplicationDbConnection>()
                 .AddDefaultTokenProviders();
 
+            builder.Services.AddTransient<UserManageService.Service.IEmailService, UserManageService.Service.EmailService>();
+
             // Adding athentication
             builder.Services.AddAuthentication(x =>
             {
-                x.DefaultAuthenticateScheme=JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme=JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultScheme=JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 
 
 
@@ -51,9 +55,8 @@ namespace WebApiIdentity_security
 
             // Add Email Configration 
 
-            var _config = builder.Configuration.GetSection("EmailConfig").Get<EmailConfigration>();
-            builder.Services.AddSingleton(_config);
-            builder.Services.AddScoped<IEmailService, EmailService>();
+
+
 
             // Add services to the container.
 

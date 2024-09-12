@@ -146,5 +146,4 @@ D:\mvc_file\WebApiIdentity_security\bin\Debug\net8.0\MailKit.dll
 D:\mvc_file\WebApiIdentity_security\bin\Debug\net8.0\MimeKit.dll
 D:\mvc_file\WebApiIdentity_security\bin\Debug\net8.0\NETCore.MailKit.dll
 D:\mvc_file\WebApiIdentity_security\bin\Debug\net8.0\BouncyCastle.Crypto.dll
-D:\mvc_file\WebApiIdentity_security\bin\Debug\net8.0\UserManageService.dll
-D:\mvc_file\WebApiIdentity_security\bin\Debug\net8.0\UserManageService.pdb
+D:\mvc_file\WebApiIdentity_security\obj\Debug\net8.0\WebApiIdentity_security.sourcelink.json

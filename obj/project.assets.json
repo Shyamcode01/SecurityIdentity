@@ -1720,19 +1720,6 @@
             "rid": "win"
           }
         }
-      },
-      "UserManageService/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "NETCore.MailKit": "2.1.0"
-        },
-        "compile": {
-          "bin/placeholder/UserManageService.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/UserManageService.dll": {}
-        }
       }
     }
   },
@@ -4643,11 +4630,6 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "UserManageService/1.0.0": {
-      "type": "project",
-      "path": "../UserManageService/UserManageService.csproj",
-      "msbuildProject": "../UserManageService/UserManageService.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4657,8 +4639,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 8.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.8",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.8",
-      "Swashbuckle.AspNetCore >= 6.4.0",
-      "UserManageService >= 1.0.0"
+      "NETCore.MailKit >= 2.1.0",
+      "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
   "packageFolders": {
@@ -4687,11 +4669,7 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "D:\\mvc_file\\UserManageService\\UserManageService.csproj": {
-              "projectPath": "D:\\mvc_file\\UserManageService\\UserManageService.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -4727,6 +4705,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[8.0.8, )"
+          },
+          "NETCore.MailKit": {
+            "target": "Package",
+            "version": "[2.1.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
