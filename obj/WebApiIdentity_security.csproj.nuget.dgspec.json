@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\mvc_file\\WebApiIdentity_security\\WebApiIdentity_security.csproj": {}
+    "D:\\Dotnet_project\\SecurityIdentity\\WebApiIdentity_security.csproj": {}
   },
   "projects": {
-    "D:\\mvc_file\\WebApiIdentity_security\\WebApiIdentity_security.csproj": {
+    "D:\\Dotnet_project\\SecurityIdentity\\WebApiIdentity_security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\mvc_file\\WebApiIdentity_security\\WebApiIdentity_security.csproj",
+        "projectUniqueName": "D:\\Dotnet_project\\SecurityIdentity\\WebApiIdentity_security.csproj",
         "projectName": "WebApiIdentity_security",
-        "projectPath": "D:\\mvc_file\\WebApiIdentity_security\\WebApiIdentity_security.csproj",
-        "packagesPath": "C:\\Users\\sonug\\.nuget\\packages\\",
-        "outputPath": "D:\\mvc_file\\WebApiIdentity_security\\obj\\",
+        "projectPath": "D:\\Dotnet_project\\SecurityIdentity\\WebApiIdentity_security.csproj",
+        "packagesPath": "C:\\Users\\Si cim\\.nuget\\packages\\",
+        "outputPath": "D:\\Dotnet_project\\SecurityIdentity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sonug\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Si cim\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,6 +35,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -92,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

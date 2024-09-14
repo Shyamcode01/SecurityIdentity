@@ -30,27 +30,32 @@ namespace UserManageService.Service
                     UserName = _configuration.GetValue<string>("AppSettings:EmailConfig:UserName")
                 };
 
+              
+
+             
+
+                // Set up SMTP client
+                var client = new SmtpClient(getEmailSetting.SmtpServer)
+                {
+                    Port = getEmailSetting.Port,
+                    Credentials = new NetworkCredential(getEmailSetting.From, getEmailSetting.Password),
+                    EnableSsl = getEmailSetting.EnableSSL,
+                    UseDefaultCredentials=false
+                    
+                };
                 // Create the email message
                 MailMessage mailMessage = new MailMessage()
                 {
                     From = new MailAddress(getEmailSetting.From),
+             
                     Subject = subject,
                     Body = message,
                     IsBodyHtml = true // Option to send HTML content
                 };
-
                 mailMessage.To.Add(email);
 
-                // Set up SMTP client
-                var smtpClient = new SmtpClient(getEmailSetting.SmtpServer)
-                {
-                    Port = getEmailSetting.Port,
-                    Credentials = new NetworkCredential(getEmailSetting.From, getEmailSetting.Password),
-                    EnableSsl = getEmailSetting.EnableSSL
-                };
-
                 // Send the email
-                await smtpClient.SendMailAsync(mailMessage);
+                await client.SendMailAsync(mailMessage);
 
                 // Return success response
                 return new Response { Status = "success", Message = "Email sent successfully" };

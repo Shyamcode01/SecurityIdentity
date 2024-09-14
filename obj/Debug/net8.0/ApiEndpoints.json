@@ -1,0 +1,59 @@
+[
+  {
+    "ContainingType": "WebApiIdentity_security.Controllers.User.AdminController",
+    "Method": "GetDetails",
+    "RelativePath": "api/Admin/GetList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiIdentity_security.Controllers.Authentication.AuthenticationController",
+    "Method": "Register",
+    "RelativePath": "api/Authentication",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registeruser",
+        "Type": "WebApiIdentity_security.Model.Authentication_model.Signup",
+        "IsRequired": true
+      },
+      {
+        "Name": "role",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiIdentity_security.Controllers.Authentication.AuthenticationController",
+    "Method": "Login",
+    "RelativePath": "api/Authentication/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginModel",
+        "Type": "WebApiIdentity_security.Model.Entity_model.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiIdentity_security.Controllers.User.HRController",
+    "Method": "GetDetailsHr",
+    "RelativePath": "api/HR/GetList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

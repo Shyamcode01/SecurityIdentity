@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebApiIdentity_security")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+157af660f45d7f9e2ae31d4d0dab16507cac6e82")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+572ffea5ee30687590466e39e6295020b28ef05e")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebApiIdentity_security")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebApiIdentity_security")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
