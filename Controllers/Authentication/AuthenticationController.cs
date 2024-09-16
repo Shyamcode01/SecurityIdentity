@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using UserManageService.Model;
 using WebApiIdentity_security.Model;
 using WebApiIdentity_security.Model.Authentication_model;
 using WebApiIdentity_security.Model.Entity_model;
@@ -44,7 +45,7 @@ namespace WebApiIdentity_security.Controllers.Authentication
                 if (userExist != null)
                 {
                     return StatusCode(StatusCodes.Status403Forbidden,
-                        new Response { Status = "Error", Message = "User All ready Exist !" }
+                        new Response { Status = "Error", Message = $"{registeruser.Email}: User All ready Exist !" }
                         ); ;
                 }
                 // user data base save
@@ -71,11 +72,19 @@ namespace WebApiIdentity_security.Controllers.Authentication
                     }
 
                     // email send data 
-                    var status = await _emailService.SendEmail(registeruser.Email, "Account create Success fully !", "Congratulation your account is successfully create");
+                    var status = await _emailService.SendEmail(registeruser.Email, "New User Added  !", "Congratulation your account is successfully create");
                     // Add role to user manager
                     await _userManager.AddToRoleAsync(user, role);
+
+
+                    // Add tokent to verify the email
+                    var token=await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var confirmationLink = Url.Action(nameof(ConfirmEmail), "Authentication", new {userid=user.Id,Token= token }, Request.Scheme);
+                    await _emailService.SendEmail(registeruser.Email,"shyamyadav121240@gmail.com",$"Please confirm your email accountlink:<a href=' {confirmationLink}'>Confirm LInk</a>");
+
                     return StatusCode(StatusCodes.Status201Created,
-                        new Response { Status = "Success", Message = "User Create Successfull" });
+                        new Response { Status = "Success", Message = $"{registeruser.Email}User Create Successfull" });
+                    
 
                 }
                 else
@@ -122,18 +131,21 @@ namespace WebApiIdentity_security.Controllers.Authentication
 
                 var tokengenerate = new JwtSecurityTokenHandler().WriteToken(jwtToken);
 
-                return Ok(new
-                {
-                    token = tokengenerate,
+                
+                return Ok(
+                    new
+                { 
+                token = tokengenerate,
                     expire = jwtToken.ValidTo
 
                 });
-
             }
-            return Unauthorized();
+ 
+            return BadRequest(new Response { Status = "error", Message = $"{loginModel.UserName} user credential faild  or user name or password not exists!" });
+
         }
 
-
+        // token generate
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configration["Jwt:Key"]));
@@ -150,5 +162,30 @@ namespace WebApiIdentity_security.Controllers.Authentication
         }
 
 
+        [HttpGet("ConfirmEmail")]
+        public async Task<IActionResult>ConfirmEmail(string token,string email)
+        {
+            var user=await _userManager.FindByEmailAsync(email);
+            if (user != null)
+            {
+                var result=await _userManager.ConfirmEmailAsync(user,token);
+                if (result.Succeeded)
+                {
+                    return StatusCode(StatusCodes.Status200OK,
+
+                        new Response { Status="success",Message="Email verify successfully!"}
+                        );
+                  
+                }
+               
+                
+
+            }
+            
+                return StatusCode(StatusCodes.Status500InternalServerError,
+
+                        new Response { Status = "error", Message = "This user dous not exist " });
+ 
+        }
     }
 }

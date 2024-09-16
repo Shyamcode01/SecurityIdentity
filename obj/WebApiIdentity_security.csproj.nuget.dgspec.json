@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dotnet_project\\SecurityIdentity\\WebApiIdentity_security.csproj": {}
+    "D:\\web\\dotnet\\SecurityIdentity\\WebApiIdentity_security.csproj": {}
   },
   "projects": {
-    "D:\\Dotnet_project\\SecurityIdentity\\WebApiIdentity_security.csproj": {
+    "D:\\web\\dotnet\\SecurityIdentity\\WebApiIdentity_security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Dotnet_project\\SecurityIdentity\\WebApiIdentity_security.csproj",
+        "projectUniqueName": "D:\\web\\dotnet\\SecurityIdentity\\WebApiIdentity_security.csproj",
         "projectName": "WebApiIdentity_security",
-        "projectPath": "D:\\Dotnet_project\\SecurityIdentity\\WebApiIdentity_security.csproj",
-        "packagesPath": "C:\\Users\\Si cim\\.nuget\\packages\\",
-        "outputPath": "D:\\Dotnet_project\\SecurityIdentity\\obj\\",
+        "projectPath": "D:\\web\\dotnet\\SecurityIdentity\\WebApiIdentity_security.csproj",
+        "packagesPath": "C:\\Users\\sonug\\.nuget\\packages\\",
+        "outputPath": "D:\\web\\dotnet\\SecurityIdentity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Si cim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sonug\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -70,6 +64,10 @@
               "target": "Package",
               "version": "[8.0.8, )"
             },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.7.1, )"
+            },
             "NETCore.MailKit": {
               "target": "Package",
               "version": "[2.1.0, )"
@@ -98,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

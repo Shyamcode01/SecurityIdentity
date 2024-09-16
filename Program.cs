@@ -28,9 +28,12 @@ namespace WebApiIdentity_security
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbConnection>()
                 .AddDefaultTokenProviders();
+            builder.Services.Configure<IdentityOptions>(opt=>opt.SignIn.RequireConfirmedEmail=true);
 
             // Add Email Configration 
+            builder.Services.Configure<EmailConfigration>(builder.Configuration.GetSection("EmailConfig"));
             builder.Services.AddTransient<UserManageService.Service.IEmailService, UserManageService.Service.EmailService>();
+
 
 
             // Adding athentication
@@ -66,6 +69,7 @@ namespace WebApiIdentity_security
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+            // swagger token info
             builder.Services.AddSwaggerGen(option =>
             {
                 option.SwaggerDoc("v1",new OpenApiInfo { Title="Auth api",Version="v1"});

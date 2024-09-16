@@ -1,61 +1,50 @@
-﻿using System.Net;
-using System.Net.Mail;
+﻿ 
 using UserManageService.Model;
 using WebApiIdentity_security.Model;
 using UserManageService.Service;
+using Microsoft.Extensions.Options;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace UserManageService.Service
 {
     public class EmailService : IEmailService
     {
         private readonly IConfiguration _configuration;
+        private EmailConfigration _eMAILcONFIG;
 
-        public EmailService(IConfiguration configuration)
+        public EmailService(IConfiguration configuration, IOptions< EmailConfigration> eMAILcONFIG)
         {
             _configuration = configuration;
+            _eMAILcONFIG = eMAILcONFIG.Value;
         }
 
         public async Task<Response> SendEmail(string email, string subject, string message)
         {
             try
             {
-                // Corrected configuration fetching with proper keys
-                EmailConfigration getEmailSetting = new EmailConfigration()
+                var mail = new MimeMessage();
+                mail.From.Add(new MailboxAddress(_eMAILcONFIG.UserName, _eMAILcONFIG.From));
+                mail.To.Add(MailboxAddress.Parse(email));
+                mail.Subject = subject;
+
+
+                var builder = new BodyBuilder
                 {
-                    From = _configuration.GetValue<string>("AppSettings:EmailConfig:From"),
-                    Password = _configuration.GetValue<string>("AppSettings:Password"),
-                    SmtpServer = _configuration.GetValue<string>("AppSettings:EmailConfig:SmtpServer"),
-                    Port = _configuration.GetValue<int>("AppSettings:EmailConfig:Port"),
-                    EnableSSL = _configuration.GetValue<bool>("AppSettings:EmailConfig:EnableSSL"),
-                    UserName = _configuration.GetValue<string>("AppSettings:EmailConfig:UserName")
+                    HtmlBody = message // or PlainTextBody if you need plain text emails
                 };
+                mail.Body=builder.ToMessageBody();
 
-              
-
-             
-
-                // Set up SMTP client
-                var client = new SmtpClient(getEmailSetting.SmtpServer)
+                using(var client=new MailKit.Net.Smtp.SmtpClient())
                 {
-                    Port = getEmailSetting.Port,
-                    Credentials = new NetworkCredential(getEmailSetting.From, getEmailSetting.Password),
-                    EnableSsl = getEmailSetting.EnableSSL,
-                    UseDefaultCredentials=false
-                    
-                };
-                // Create the email message
-                MailMessage mailMessage = new MailMessage()
-                {
-                    From = new MailAddress(getEmailSetting.From),
-             
-                    Subject = subject,
-                    Body = message,
-                    IsBodyHtml = true // Option to send HTML content
-                };
-                mailMessage.To.Add(email);
+                    await client.ConnectAsync(_eMAILcONFIG.SmtpServer,_eMAILcONFIG.Port,_eMAILcONFIG.EnableSSL);
+                    await client.AuthenticateAsync(_eMAILcONFIG.UserName,_eMAILcONFIG.Password);
+                    await client.SendAsync(mail);
+                    await client.DisconnectAsync(true);
+                }
 
-                // Send the email
-                await client.SendMailAsync(mailMessage);
+
+
 
                 // Return success response
                 return new Response { Status = "success", Message = "Email sent successfully" };
