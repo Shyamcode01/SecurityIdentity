@@ -28,13 +28,15 @@ namespace WebApiIdentity_security
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbConnection>()
                 .AddDefaultTokenProviders();
+            // email conformation disk
             builder.Services.Configure<IdentityOptions>(opt=>opt.SignIn.RequireConfirmedEmail=true);
 
             // Add Email Configration 
             builder.Services.Configure<EmailConfigration>(builder.Configuration.GetSection("EmailConfig"));
             builder.Services.AddTransient<UserManageService.Service.IEmailService, UserManageService.Service.EmailService>();
 
-
+            // reset password config
+            builder.Services.Configure<DataProtectionTokenProviderOptions>(option => option.TokenLifespan = TimeSpan.FromMinutes(10));
 
             // Adding athentication
             builder.Services.AddAuthentication(x =>
